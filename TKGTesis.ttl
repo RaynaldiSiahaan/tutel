@@ -1,0 +1,46 @@
+@prefix ex: <http://example.org/#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix dbo: <https://dbpedia.org/ontology/#>.
+@prefix wc: <https://w3c.github.io/dpv/2.0/dpv/#>.
+@prefix mil: <https://rdf.muninn-project.org/ontologies/military-en.html#>.
+@prefix emo: <https://w3id.org/emmo#>.
+@prefix dco: <https://dcodings.github.io/DINGO/#>.
+@prefix ns: <http://ns.inria.fr/ludo/v1/xapi#>.
+
+# Class
+mil:Soldier a rdfs:Class .
+dbo:Camera a rdfs:Class .
+dco:objective a rdfs:Class .
+ex:Human a rdfs:Class .
+mil:Weapon a rdfs:Class .
+dbo:equipment a rdfs:Class .
+emo:EMMO_253e1d54_69af_4931_90d0_5ccfd7e690ad a rdfs:Class . #3D Printing
+emo:EMMO_03eb9b46_8ff0_4fcd_b1a0_73f65ae7434e a rdfs:Class . #AdditiveManufacturing
+emo:EMMO_8533871a_01e4_4935_8c7b_cedf8fcc3fa3 a rdfs:Class . #Replica Granat
+
+# SubClass
+mil:Soldier rdfs:subClassOf ex:Human .
+dbo:Camera rdfs:subClassOf dbo:equipment .
+emo:EMMO_8533871a_01e4_4935_8c7b_cedf8fcc3fa3 rdfs:subClassOf mil:Weapon . #Replica subclass of Weapon
+emo:EMMO_8533871a_01e4_4935_8c7b_cedf8fcc3fa3 rdfs:subClassOf emo:EMMO_253e1d54_69af_4931_90d0_5ccfd7e690ad .  #Replica subclass of 3D Printing
+dbo:Camera rdfs:subClassOf ex:Alat .
+ex:EMMO_253e1d54_69af_4931_90d0_5ccfd7e690ad rdfs:subClassOf emo:EMMO_03eb9b46_8ff0_4fcd_b1a0_73f65ae7434e . #3D Print subclass of Additive Manufact
+
+# Properties
+dbo:shoot a rdf:Property ;
+    rdfs:domain ex:Human ;
+    rdfs:range mil:Weapon .
+
+wc:process a rdf:Property ;
+    rdfs:domain dbo:Camera ;
+    rdfs:range  emo:EMMO_8533871a_01e4_4935_8c7b_cedf8fcc3fa3.
+
+ns:hasTarget a rdf:Property ;
+    rdfs:domain ex:Human ;
+    rdfs:range dco:Objective .
+
+# Sample individual
+emo:EMMO_8533871a_01e4_4935_8c7b_cedf8fcc3fa3  rdfs:label "Granat" .
+
+mil:Soldier dbo:shoot emo:EMMO_8533871a_01e4_4935_8c7b_cedf8fcc3fa3 ;
+rdfs:label "John Doe" .
